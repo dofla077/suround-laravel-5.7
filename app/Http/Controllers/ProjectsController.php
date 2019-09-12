@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ProjectCreated;
+use App\Notifications\SubscriptionRenewlFailed;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -58,6 +59,8 @@ class ProjectsController extends Controller
         $project = Project::create($attributes);
 
         //event(new \App\Events\ProjectCreated($project));
+
+        auth()->user()->notify(new SubscriptionRenewlFailed());
 
         return redirect('/projects');
 
