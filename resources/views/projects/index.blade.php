@@ -1,11 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
+@extends('layout')
 
-</head>
-<body>
+@section('content')
 
-<h1>Projects</h1>
+<h1 class="title">Projects</h1>
+
+@if(session('message'))
+    <p>
+        {{ session('message') }}
+    </p>
+@endif
+
 <ul>
     @foreach($projects as $project)
         <li>
@@ -15,7 +19,4 @@
         </li>
     @endforeach
 </ul>
-
-
-</body>
-</html>
+@endsection

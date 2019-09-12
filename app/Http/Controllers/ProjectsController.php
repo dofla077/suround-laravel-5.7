@@ -56,11 +56,15 @@ class ProjectsController extends Controller
 
         $attributes['owner_id'] = auth()->id();
 
-        $project = Project::create($attributes);
+        Project::create($attributes);
+
+       // $project = Project::create($attributes);
 
         //event(new \App\Events\ProjectCreated($project));
 
         auth()->user()->notify(new SubscriptionRenewlFailed());
+
+        flash('Your project has been created.');
 
         return redirect('/projects');
 
